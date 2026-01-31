@@ -1,0 +1,38 @@
+name: Pipeline CI/CD
+
+on:
+  push:
+   branches: 
+    - main
+
+jobs:
+  job1:
+    name: build_ecr
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        use: actions/checkout@v4
+
+      - name: "Configure AWS Credentials"
+        uses: aws-actions/configure-aws-credentials@v5.1.1
+        with: 
+          role-to-assume: 
+          aws-region: us-east-2
+
+      - name: Amazon ECR "Login" Action for GitHub Actions
+        uses: aws-actions/amazon-ecr-login@v2.0.1
+
+      - name: Build, Tag, and push image to Amazon ECR
+        run:
+          docker build -t guinho-lab:v1.0
+          docker tag guinho-lab:v1.0 890871562295.dkr.ecr.us-east-2.amazonaws.com/ecr-lab-guinho:v1.1
+          docker push 890871562295.dkr.ecr.us-east-2.amazonaws.com/ecr-lab-guinho:v1.1
+
+jobs:
+  job2:
+    name: build_ecr
+    runs-on: ubuntu-latest
+    steps:
+      - name:           
+
+
