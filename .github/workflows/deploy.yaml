@@ -21,7 +21,7 @@ jobs:
         run: |
           VERSION=$(git rev-parse --short HEAD)
           echo "Versão injetada: $VERSION"
-          sed -i "s/{{VERSION}}/$VERSION/g" index.html       
+          sed -i "s/{{VERSION}}/$VERSION/g" website/index.html       
 
       - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v5.1.1
