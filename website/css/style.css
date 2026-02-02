@@ -6,9 +6,9 @@
 }
 
 :root {
-    --primary-color: #1411be;      /* Roxo principal */
-    --secondary-color: #9333ea;     /* Roxo claro */
-    --accent-color: #a855f7;        /* Roxo accent */
+    --primary-color: #b011be;      /* Roxo principal */
+    --secondary-color: #ea33cc;     /* Roxo claro */
+    --accent-color: #e455f7;        /* Roxo accent */
     --dark-bg: #1a1a1a;            /* Preto principal */
     --darker-bg: #111111;           /* Preto mais escuro */
     --light-text: #ffffff;          /* Texto claro */
