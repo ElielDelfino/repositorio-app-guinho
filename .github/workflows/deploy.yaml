@@ -17,6 +17,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Inject version into HTML
+        run: |
+          VERSION=$(git rev-parse --short HEAD)
+          echo "Versão injetada: $VERSION"
+          sed -i "s/{{VERSION}}/$VERSION/g" index.html       
+
       - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v5.1.1
         with: 
