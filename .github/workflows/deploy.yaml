@@ -41,6 +41,8 @@ jobs:
   job2:
     name: deploy_ec2
     needs: job1
+    env:
+        EC2_INSTANCE_ID: ${{secrets.EC2_INSTANCE_ID}}
     runs-on: ubuntu-latest
     steps:
       - name: "Configure AWS Credentials"
