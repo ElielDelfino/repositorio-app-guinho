@@ -50,15 +50,15 @@ jobs:
           --document-name "AWS-RunShellScript" \
           --comment "Deploy via GitHubActions" \
           --parameters  commands='[
-            aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 890871562295.dkr.ecr.us-east-2.amazonaws.com
-            docker pull 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:v1.0
-            echo "parando container antigo site"
-            docker stop site || true
-            echo "removendo container antigo site"
-            docker rm site || true
-            echo "rodando nova tag da imagem"
-            docker run -d -p 80:80 --name site 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:v1.0
-            echo "Parabéns! Imagem foi atualizada!"
-            docker ps
+            "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 890871562295.dkr.ecr.us-east-2.amazonaws.com",
+            "docker pull 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:v1.0",
+            "echo \"parando container antigo site \"",
+            "docker stop site || true",
+            "echo \"removendo container antigo site\"",
+            "docker rm site || true",
+            "echo \"rodando nova tag da imagem\"",
+            "docker run -d -p 80:80 --name site 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:v1.0",
+            "echo \"Parabéns! Imagem foi atualizada!\"",
+            "docker ps"
           ]'
           
