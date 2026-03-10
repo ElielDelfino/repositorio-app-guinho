@@ -70,7 +70,7 @@ jobs:
             "echo \"removendo container antigo site\"",
             "docker rm site || true",
             "echo \"rodando nova tag da imagem\"",
-            "docker run -d -p 80:80 --name site 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:v1.0",
+            "docker run -d -p 80:80 --name site 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:latest",
             "echo \"Parabéns! Imagem foi atualizada!\"",
             "docker ps"
           ]'
