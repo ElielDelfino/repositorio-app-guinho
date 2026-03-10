@@ -34,9 +34,14 @@ jobs:
 
       - name: Build, Tag, and push image to Amazon ECR
         run: |
-          docker build -t guinho-lab:v1.0 .
-          docker tag guinho-lab:v1.0 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:v1.0
-          docker push 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:v1.0
+          IMAGE_URI=890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho
+          IMAGE_TAG=${GITHUB_SHA}
+
+          docker build -t $IMAGE_URI:$IMAGE_TAG .
+          docker tag $IMAGE_URI:$IMAGE_TAG $IMAGE_URI:latest
+
+          docker push $IMAGE_URI:$IMAGE_TAG
+          docker push $IMAGE_URI:latest
 
   job2:
     name: deploy_ec2
@@ -59,7 +64,7 @@ jobs:
           --comment "Deploy via GitHubActions" \
           --parameters  commands='[
             "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 890871562295.dkr.ecr.us-east-2.amazonaws.com",
-            "docker pull 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:v1.0",
+            "docker pull 890871562295.dkr.ecr.us-east-2.amazonaws.com/projeto-guinho:latest",
             "echo \"parando container antigo site \"",
             "docker stop site || true",
             "echo \"removendo container antigo site\"",
